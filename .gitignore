@@ -165,4 +165,4 @@ cython_debug/
 data/
 logs/
 *:Zone.Identifier
-09_VGG/auth_token.txt
+*.pth

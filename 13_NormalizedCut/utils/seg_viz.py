@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from skimage.filters import threshold_multiotsu
 
 def label_channel(image: np.ndarray, num_labels: int) -> tuple[int, np.ndarray]:
@@ -63,6 +64,7 @@ def color_labels(image: np.ndarray) -> np.ndarray:
     Returns:
         np.ndarray: The colorized image.
     """
-    num_labels = np.unique(image).shape[0]
-    colors = np.random.randint(0, 255, (num_labels, 3), dtype=np.uint8)
+    num_labels = np.max(image) + 1
+    cmap = plt.get_cmap('tab20', num_labels)
+    colors = (cmap(np.arange(num_labels))[:, :3] * 255).astype(np.uint8)
     return colors[image]
